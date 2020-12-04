@@ -1006,6 +1006,7 @@ let myArray = myData.split(myPattern);
 
 let arrayOfCharacters = [];
 let arrayOfArrays = [];
+let passwordArray = [];
 
 for (let i=0; i<myArray.length; i++) {
     let tempArray = [];
@@ -1045,6 +1046,7 @@ for (let i=0; i<myArray.length; i++) {
     }
 }
 
+//rather than extracting the passwords from the string containing the rules, required character, and password, we're doing the following to test the validity of the passwords
 let count = 0;
 for (let g=0; g<myArray.length; g++) {
     let characterChecker = arrayOfCharacters[g];
@@ -1062,4 +1064,30 @@ for (let g=0; g<myArray.length; g++) {
     }
 }
 
-console.log(count)
+//again we're doing the following
+let count1 = 0;
+for (let u=0; u<myArray.length; u++) {
+    let characterChecker = arrayOfCharacters[u];
+    let firstPositionChecker = arrayOfArrays[u][0];
+    let secondPositionChecker = arrayOfArrays[u][1];
+    let validChecker = 0;
+
+    for (let y=0; y<myArray[u].length; y++) {
+        if (myArray[u][y] === `:`) {
+            if (myArray[u][y + firstPositionChecker + 1] === characterChecker) {
+                validChecker = validChecker + 1;
+            }
+            if (myArray[u][y + secondPositionChecker + 1] === characterChecker) {
+                validChecker = validChecker + 1;
+            }
+        }
+    }
+    if (validChecker === 1) {
+        count1 = count1 + 1;
+    }
+}
+
+
+
+console.log(count);
+console.log(count1);
